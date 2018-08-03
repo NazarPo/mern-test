@@ -81,6 +81,10 @@ router.post('/users/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
+    if(!isValid) {
+        return res.status(400).json(errors);
+    }
+
     User.findOne({email: email})
         .then(user => {
             if (!user) {
@@ -95,7 +99,8 @@ router.post('/users/login', (req, res) => {
                         const payload = {
                             id: user.id,
                             firstName: user.firstName,
-                            secondName: user.secondName,
+                            lastName: user.lastName,
+                            email: user.email,
                             avatar: user.avatar
                         };
 

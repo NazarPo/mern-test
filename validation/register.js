@@ -9,7 +9,7 @@ module.exports = function registerInputValidation(data) {
     const passwordRules = rules.password
 
     data.firstName = !isEmpty(data.firstName) ? data.firstName : ''
-    data.secondName = !isEmpty(data.secondName) ? data.secondName : ''
+    data.lastName = !isEmpty(data.lastName) ? data.lastName : ''
     data.email = !isEmpty(data.email) ? data.email : ''
     data.password = !isEmpty(data.password) ? data.password : ''
 

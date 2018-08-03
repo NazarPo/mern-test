@@ -4,6 +4,7 @@ const router = require('./routes');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const cors = require('cors');
 
 const DB_URL = 'mongodb://localhost/interlink-meetup-tutor';
 mongoose.connect(DB_URL, function (err) {
@@ -17,6 +18,7 @@ mongoose.connect(DB_URL, function (err) {
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());

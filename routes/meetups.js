@@ -1,25 +1,24 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport');
-const jwt = require('jsonwebtoken');
 
 const Meetup = require('../models/Meetup')
 
 router.put('/meetups/:meetupId/users', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Meetup.postUserById (
+  Meetup.registerUserById (
     req.params.meetupId, 
     req.user._id
   )
-  .then(user => res.status(200).json(user))
+  .then(meetup => res.status(200).json({sucess: 'You have registered successfully'}))
   .catch(err => res.status(500).json({error: err}))
 })
 
 router.delete('/meetups/:meetupId/users', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Meetup.deleteUserById (
+  Meetup.unregisterUserById (
     req.params.meetupId, 
     req.user._id
   )
-  .then(user => res.status(200).json(user))
+  .then(meetup => res.status(200).json({ success: 'You have unregestered from meetup' }))
   .catch(err => res.status(500).json({error: err}))
 })
 
