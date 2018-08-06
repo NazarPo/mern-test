@@ -9,7 +9,10 @@ router.put('/meetups/:meetupId/users', passport.authenticate('jwt', { session: f
     req.params.meetupId, 
     req.user._id
   )
-  .then(meetup => res.status(200).json({sucess: 'You have registered successfully'}))
+  .then(meetup => res.status(200).json({
+    sucess: 'You have registered successfully',
+    meetup
+  }))
   .catch(err => res.status(500).json({error: err}))
 })
 
